@@ -1,11 +1,10 @@
 # Urban Wave Tagger
 
-![workflow](https://github.com/rpdev63/audio-app/actions/workflows/test.yaml/badge.svg?event=push)
+![workflow](https://github.com/rpdev63/urban-wav-tagger/actions/workflows/test.yaml/badge.svg?event=push)
 
 <center style="padding:30px 0" >
     <img src="uwt1.png" alt="Screenshot Home page" style="border: 5px solid purple; border-radius:10px ; ">
     <br>
-    <i>App Home page</i>
 </center>
 
 
