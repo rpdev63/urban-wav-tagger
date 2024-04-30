@@ -24,7 +24,7 @@ Urban Wave Tagger is an innovative application developed as part of an academic 
 
 The Urban Wave Tagger is specifically designed for recognizing and tagging urban sounds, utilizing AWS services for processing and securely storing uploaded sound files. For optimal functionality, the application typically requires the deployment of a custom-built API as well as the setup of AWS credentials and configuration of an AWS S3 bucket to store sound samples and their associated tags.
 
-<u><b>API Source Code</b></u>: If you prefer to run the API locally, the source code for the API, which integrates the machine learning model, is available at this GitHub repository: Audio API Repository. This allows for local testing and development without deploying to AWS.
+<u><b>API Source Code</b></u>: If you prefer to run the API locally, the source code for the API, which integrates the machine learning model, is available at this GitHub repository: [Audio API Repository](https://github.com/rpdev63/audio-api). This allows for local testing and development without deploying to AWS.
 
 While the API can be run locally for development or testing purposes, please note that the sound tagging functionality that involves labeling and storing sound files will not operate unless you set up an AWS S3 bucket. To enable full functionality, including sound file storage and retrieval, you must provide the necessary AWS bucket settings in your environment variables.
 
