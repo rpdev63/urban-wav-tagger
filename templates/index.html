@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="home">
+  <h2>Upload new audio file</h2>
+  <div class="text"> 
+    <p><span class="emote">⚠️</span>Please upload .wav or .mp3 files only. </p>
+    <p><span class="emote">⚠️</span>Only the first 4 seconds of the sound will be evaluated.</p>
+  </div>
+  <form method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".wav, .mp3">
+    <input type="submit" value="Predict">
+  </form>
+  <!-- Errors management-->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+</div>
+{% endblock %}

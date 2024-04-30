@@ -1,0 +1,10 @@
+venv/
+env/
+.env
+__pycache__/
+uwt1.png
+todo
+htmlcov/
+tests/
+.github/
+Dockerrun.aws.json

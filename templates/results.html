@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="results">
+  <h2>Results : <span class="firstclass"> {{ first_class }}</span></h2>
+  <div id="plot"></div>
+  <p>{{path}}</p>
+  <div id="ranking">
+    <ul class="items">
+      {% for class, probability in predictions_to_render.items() %}
+      <li><i>{{ class }}</i> with probability: {{ probability }} </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="audio-player">
+    <audio controls>
+      <source src="{{ filename }}" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <div class="form">
+    <form action="/validate" method="POST">
+      <input type="hidden" name="filename" value="{{ filename }}">
+      <input type="hidden" name="prediction" value="{{ first_class }}">
+      <div id="confirm-select">
+        <label for="confirm"><b>Is the prediction good ?</b></label>
+        <select id="confirm" name="confirm" onchange="toggleSelect()">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+      <div id="additional-select" style="display: none;">
+        <label for="additional-option"><b>New Tag:</b></label>
+        <select id="additional-option" name="label"></select>
+      </div>
+      <div class="form-bottom">
+        <input type="submit" value="Send Tag">
+        <p>or</p>
+        <a class="link" href={{ url_for('upload_file') }}>Go back</a>  
+      </div>
+    </form>
+  </div>
+  
+</div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+  // Plot
+  var graphJSON = {{ graphJSON| safe }};
+  var layout = {
+    title: {
+      text: 'Top 3 predictions',
+      xref: 'paper',  
+      x: 0.5,         
+      y: 0.9         
+    },
+    width: 700,       
+    height: 400       
+  };
+  Plotly.newPlot('plot', graphJSON, layout);
+
+  // Get labels choices
+  var classes = {{ classes | tojson | safe }};
+  var select = document.getElementById("additional-option");
+
+    for (var i = 0; i < classes.length; i++) {
+        var option = document.createElement("option");
+        option.text = classes[i];
+        option.value = classes[i];
+        select.appendChild(option);
+    }
+  
+  // Display labels choices if no is selected
+  function toggleSelect() {
+    var conformSelect = document.getElementById("confirm");
+    var additionalSelect = document.getElementById("additional-select");
+    if (conformSelect.value === "yes") {
+      additionalSelect.style.display = "none";
+    } else {
+      additionalSelect.style.display = "block";
+    }
+  }
+
+</script>
+
+{% endblock %}
